@@ -22,8 +22,8 @@ function createWindow() {
     backgroundColor: '#06090f'
   });
 
-  // Load the app from local server
-  mainWindow.loadURL('http://localhost:3500');
+  // Load the app UI (not the landing page)
+  mainWindow.loadURL('http://localhost:3500/app.html');
 
   // Open external links in browser
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
