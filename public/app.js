@@ -387,3 +387,13 @@ function closeAnalyzer() {
   document.getElementById('analyzerModal').classList.add('hidden');
   document.body.style.overflow = '';
 }
+
+function openDownloadModal() {
+  document.getElementById('downloadModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDownloadModal() {
+  document.getElementById('downloadModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}

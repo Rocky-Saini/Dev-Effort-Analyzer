@@ -32,7 +32,7 @@
         <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Codebase Aware</span></div>
         <div class="stat"><span class="stat-num">0</span><span class="stat-label">Data Stored</span></div>
       </div>
-      <a href="#download" class="btn-hero">Download App ↓</a>
+      <button onclick="openDownloadModal()" class="btn-hero">Download App ↓</button>
     </div>
   </section>
 
@@ -61,150 +61,6 @@
         <p>Everything runs locally on your machine. No data leaves your system. Zero cloud storage.</p>
       </div>
     </div>
-  </section>
-
-  <!-- Download Section -->
-  <section id="download" class="download-hero">
-    <h2>Download Desktop App</h2>
-    <p class="section-desc">One-click install. No browser needed. Runs fully offline on your machine.</p>
-
-    <div class="download-grid">
-      <div class="download-card">
-        <div class="os-icon">🐧</div>
-        <h3>Linux</h3>
-        <p>AppImage (no install) or .deb package</p>
-        <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer.AppImage" class="btn-dl">⬇ AppImage</a>
-        <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/dev-effort-analyzer_amd64.deb" class="btn-dl btn-dl-alt">⬇ .deb Package</a>
-      </div>
-      <div class="download-card">
-        <div class="os-icon">🪟</div>
-        <h3>Windows</h3>
-        <p>Installer (.exe) for Windows 10/11</p>
-        <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer-Setup.exe" class="btn-dl">⬇ Windows Installer</a>
-      </div>
-      <div class="download-card">
-        <div class="os-icon">🍎</div>
-        <h3>macOS</h3>
-        <p>DMG for macOS 12+</p>
-        <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer.dmg" class="btn-dl">⬇ macOS DMG</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Getting Started Steps -->
-  <section class="getting-started">
-    <h2>Getting Started</h2>
-    <p class="section-desc">3 simple steps to generate your first WBS & Impact Analysis</p>
-
-    <div class="steps-timeline">
-      <div class="timeline-step">
-        <div class="timeline-num">1</div>
-        <div class="timeline-content">
-          <h3>Install & Open</h3>
-          <p>Download the app for your OS and launch it. No configuration needed.</p>
-          <div class="code-block">
-            <code># Linux AppImage (no install)</code>
-            <code>chmod +x DevEffort-Analyzer.AppImage</code>
-            <code>./DevEffort-Analyzer.AppImage</code>
-            <code></code>
-            <code># Linux .deb</code>
-            <code>sudo dpkg -i dev-effort-analyzer_amd64.deb</code>
-            <code></code>
-            <code># Windows — just double-click the .exe installer</code>
-            <code># macOS — drag to Applications from DMG</code>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-step">
-        <div class="timeline-num">2</div>
-        <div class="timeline-content">
-          <h3>Prerequisites</h3>
-          <p>Make sure these are installed on your machine:</p>
-          <div class="prereq-list">
-            <div class="prereq-item">
-              <span class="prereq-check">✓</span>
-              <div>
-                <strong>Git</strong>
-                <span class="prereq-desc">For branch management & repo access</span>
-              </div>
-            </div>
-            <div class="prereq-item">
-              <span class="prereq-check">✓</span>
-              <div>
-                <strong>Kiro CLI</strong>
-                <span class="prereq-desc">AI engine that generates documents</span>
-              </div>
-            </div>
-            <div class="prereq-item">
-              <span class="prereq-check">✓</span>
-              <div>
-                <strong>Kiro CLI Login</strong>
-                <span class="prereq-desc">Run <code>kiro-cli login</code> once to authenticate</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-step">
-        <div class="timeline-num">3</div>
-        <div class="timeline-content">
-          <h3>Use the Tool</h3>
-          <p>Inside the app:</p>
-          <div class="use-steps">
-            <div class="use-step"><span>①</span> Add your project repo path</div>
-            <div class="use-step"><span>②</span> Select branch (search by name or author)</div>
-            <div class="use-step"><span>③</span> Paste Jira story content</div>
-            <div class="use-step"><span>④</span> Add any extra context from your side</div>
-            <div class="use-step"><span>⑤</span> Click Generate — Kiro AI does the rest</div>
-            <div class="use-step"><span>⑥</span> Download WBS & Impact Analysis files</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Output Preview -->
-  <section class="output-preview">
-    <h2>What You Get</h2>
-    <p class="section-desc">Professional documents generated in your repo's <code>development-effort/</code> folder</p>
-
-    <div class="output-grid">
-      <div class="output-card">
-        <div class="output-header">📋 WBS_FUL2-288698.md</div>
-        <div class="output-body">
-          <p>• JIRA Ticket | Assignee | Total Efforts | DEV Date | UAT Date</p>
-          <p>• Detailed task breakdown with effort hours</p>
-          <p>• Buffer hours (Dev Testing, UAT, Impact Analysis)</p>
-          <p>• Branch & Commit Guidelines</p>
-          <p>• Dependencies & Regression Areas</p>
-        </div>
-      </div>
-      <div class="output-card">
-        <div class="output-header">📊 Impact_Analysis_FUL2-288698.md</div>
-        <div class="output-body">
-          <p>• Ticket No & Short Task Description</p>
-          <p>• Short Impact Analysis (1-2 lines)</p>
-          <p>• Detailed Impact (APIs, DB, Events, Security)</p>
-          <p>• Upstream/Downstream Dependencies</p>
-          <p>• Regression Risks & Rollback Plan</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Alternative: Run from Source -->
-  <section class="alt-setup">
-    <h2>Alternative: Run from Source</h2>
-    <p class="section-desc">If you prefer not to install the desktop app</p>
-    <div class="code-block" style="max-width:600px;margin:1.5rem auto;">
-      <code>git clone https://github.com/Rocky-Saini/Dev-Effort-Analyzer.git</code>
-      <code>cd Dev-Effort-Analyzer</code>
-      <code>node server.js</code>
-      <code># Open http://localhost:3500 in browser</code>
-    </div>
-    <p class="section-desc">Requires: Node.js 18+, Git, Kiro CLI (authenticated)</p>
   </section>
 
   <!-- Footer -->
@@ -289,6 +145,131 @@
             <button class="btn-download" onclick="downloadGenerated('impact')">📊 Download Impact Analysis</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOWNLOAD MODAL POPUP -->
+  <div class="modal-overlay hidden" id="downloadModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>⬇️ Download DevEffort</h2>
+        <button class="modal-close" onclick="closeDownloadModal()">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Why Download -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge" style="background:var(--success)">✓</span><h3>Why Use DevEffort?</h3></div>
+          <div class="benefit-mini-grid">
+            <div class="benefit-mini">⏱️ Save 2-3 hours per Jira ticket</div>
+            <div class="benefit-mini">🧠 AI scans your codebase intelligently</div>
+            <div class="benefit-mini">📧 Email-ready WBS & Impact Analysis</div>
+            <div class="benefit-mini">🔒 100% local — zero data leaves your machine</div>
+            <div class="benefit-mini">🔄 Dynamic branch selection with author filter</div>
+            <div class="benefit-mini">⚡ Powered by Kiro AI — no manual templates</div>
+          </div>
+        </div>
+
+        <!-- Download Options -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge">1</span><h3>Download for Your OS</h3></div>
+          <div class="dl-options">
+            <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer.AppImage" class="dl-option">
+              <span class="dl-icon">🐧</span>
+              <div class="dl-info">
+                <strong>Linux — AppImage</strong>
+                <span>No install needed. Double-click to run.</span>
+              </div>
+            </a>
+            <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/dev-effort-analyzer_amd64.deb" class="dl-option">
+              <span class="dl-icon">🐧</span>
+              <div class="dl-info">
+                <strong>Linux — .deb Package</strong>
+                <span>For Ubuntu/Debian. Install via dpkg.</span>
+              </div>
+            </a>
+            <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer-Setup.exe" class="dl-option">
+              <span class="dl-icon">🪟</span>
+              <div class="dl-info">
+                <strong>Windows — Installer</strong>
+                <span>For Windows 10/11. Run the .exe.</span>
+              </div>
+            </a>
+            <a href="https://github.com/Rocky-Saini/Dev-Effort-Analyzer/releases/latest/download/DevEffort-Analyzer.dmg" class="dl-option">
+              <span class="dl-icon">🍎</span>
+              <div class="dl-info">
+                <strong>macOS — DMG</strong>
+                <span>Drag to Applications.</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Installation Guide -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge">2</span><h3>Install & Setup</h3></div>
+          <div class="install-tabs">
+            <div class="install-block">
+              <h4>🐧 Linux AppImage (Easiest)</h4>
+              <div class="code-block">
+                <code>chmod +x DevEffort-Analyzer.AppImage</code>
+                <code>./DevEffort-Analyzer.AppImage</code>
+              </div>
+            </div>
+            <div class="install-block">
+              <h4>🐧 Linux .deb</h4>
+              <div class="code-block">
+                <code>sudo dpkg -i dev-effort-analyzer_amd64.deb</code>
+                <code># Then search "DevEffort" in apps</code>
+              </div>
+            </div>
+            <div class="install-block">
+              <h4>🪟 Windows</h4>
+              <div class="code-block">
+                <code># Double-click DevEffort-Analyzer-Setup.exe</code>
+                <code># Follow the installer wizard</code>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisites -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge">3</span><h3>Prerequisites</h3></div>
+          <div class="prereq-list">
+            <div class="prereq-item"><span class="prereq-check">✓</span><div><strong>Git</strong><span class="prereq-desc">Must be installed and configured</span></div></div>
+            <div class="prereq-item"><span class="prereq-check">✓</span><div><strong>Kiro CLI</strong><span class="prereq-desc">Install from Kiro IDE or standalone</span></div></div>
+            <div class="prereq-item"><span class="prereq-check">✓</span><div><strong>Kiro Login</strong><span class="prereq-desc">Run <code>kiro-cli login</code> once to authenticate</span></div></div>
+            <div class="prereq-item"><span class="prereq-check">✓</span><div><strong>Cloned Repo</strong><span class="prereq-desc">Your project must be git-cloned locally</span></div></div>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge">4</span><h3>How It Works</h3></div>
+          <div class="use-steps">
+            <div class="use-step"><span>①</span> Open app → Click "Get Started"</div>
+            <div class="use-step"><span>②</span> Add your project repo path</div>
+            <div class="use-step"><span>③</span> Select branch (search by name or author)</div>
+            <div class="use-step"><span>④</span> Paste Jira story + add extra context</div>
+            <div class="use-step"><span>⑤</span> Click Generate → Kiro AI does the rest</div>
+            <div class="use-step"><span>⑥</span> Download WBS & Impact Analysis files</div>
+          </div>
+        </div>
+
+        <!-- Alt: Run from source -->
+        <div class="modal-card">
+          <div class="card-header"><span class="step-badge" style="background:var(--text-muted)">?</span><h3>Alternative: Run from Source</h3></div>
+          <p class="card-desc">If you prefer not to install the desktop app:</p>
+          <div class="code-block">
+            <code>git clone https://github.com/Rocky-Saini/Dev-Effort-Analyzer.git</code>
+            <code>cd Dev-Effort-Analyzer</code>
+            <code>node server.js</code>
+            <code># Open http://localhost:3500</code>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
