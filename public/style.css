@@ -26,6 +26,7 @@ body {
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .container {
@@ -1128,6 +1129,12 @@ code { background: #1c2733; padding: 0.15rem 0.4rem; border-radius: 4px; font-si
 #downloadModal .modal-body {
   padding: 2.5rem 3rem;
   gap: 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#downloadModal .modal-body::-webkit-scrollbar {
+  display: none;
 }
 
 #downloadModal .modal-card {
