@@ -7,99 +7,113 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Direct Analyzer UI (no landing page) -->
-  <div class="app-wrapper">
-    <div class="app-header">
-      <h1>⚡ DevEffort Analyzer</h1>
+  <!-- Landing inside Electron -->
+  <section class="hero" style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+    <div class="hero-content">
+      <div class="hero-badge">🚀 AI-Powered Development Tool</div>
+      <h1>Generate WBS & Impact Analysis<br><span class="gradient-text">In Minutes, Not Hours</span></h1>
+      <p class="hero-desc">Paste your Jira story, point to your codebase, and let Kiro AI generate professional documents — ready to share with your team.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">10x</span><span class="stat-label">Faster</span></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Codebase Aware</span></div>
+        <div class="stat"><span class="stat-num">0</span><span class="stat-label">Data Stored</span></div>
+      </div>
+      <button onclick="openAnalyzer()" class="btn-hero">Get Started →</button>
     </div>
-    <div class="app-body">
-      <!-- Step 1: Projects -->
-      <div class="modal-card" id="step1">
-        <div class="card-header"><span class="step-badge">1</span><h3>Select or Add Project</h3></div>
-        <div id="savedProjects" class="projects-grid"></div>
-        <div class="add-project-form">
-          <div class="input-row"><input type="text" id="repoPath" placeholder="Repository path (e.g., /home/user/my-service)" /></div>
-          <div class="input-row">
-            <input type="text" id="projectName" placeholder="Project name (e.g., Invoice Service)" />
-            <button onclick="saveProject()" class="btn-icon" title="Save project">💾</button>
-            <button id="validateBtn" onclick="validatePath()" class="btn-accent">Validate</button>
+  </section>
+
+  <!-- FULLSCREEN ANALYZER MODAL -->
+  <div class="modal-overlay hidden" id="analyzerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>⚡ DevEffort Analyzer</h2>
+        <button class="modal-close" onclick="closeAnalyzer()">✕</button>
+      </div>
+      <div class="modal-body">
+        <!-- Step 1 -->
+        <div class="modal-card" id="step1">
+          <div class="card-header"><span class="step-badge">1</span><h3>Select or Add Project</h3></div>
+          <div id="savedProjects" class="projects-grid"></div>
+          <div class="add-project-form">
+            <div class="input-row"><input type="text" id="repoPath" placeholder="Repository path (e.g., /home/user/my-service)" /></div>
+            <div class="input-row">
+              <input type="text" id="projectName" placeholder="Project name (e.g., Invoice Service)" />
+              <button onclick="saveProject()" class="btn-icon" title="Save project">💾</button>
+              <button id="validateBtn" onclick="validatePath()" class="btn-accent">Validate</button>
+            </div>
+          </div>
+          <div id="pathStatus" class="status hidden"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="modal-card hidden" id="step2">
+          <div class="card-header"><span class="step-badge">2</span><h3>Select Branch</h3></div>
+          <div class="branch-controls">
+            <div class="input-row"><input type="text" id="branchSearch" placeholder="Search branch..." oninput="filterBranches()" /></div>
+            <div class="input-row">
+              <input type="text" id="authorFilter" placeholder="Filter by author (e.g., rocky)" oninput="filterByAuthor()" />
+              <button onclick="fetchBranches()" class="btn-secondary">🔄 Refresh</button>
+            </div>
+          </div>
+          <div id="branchList" class="branch-list"></div>
+          <div id="currentBranch" class="status info hidden"></div>
+          <div id="branchStatus" class="status hidden"></div>
+          <div id="stashPrompt" class="stash-prompt hidden">
+            <p>⚠️ Uncommitted changes detected. Stash them before switching?</p>
+            <div class="stash-actions">
+              <button onclick="stashAndCheckout()" class="btn-accent">Yes, Stash & Switch</button>
+              <button onclick="cancelCheckout()" class="btn-secondary">Cancel</button>
+            </div>
           </div>
         </div>
-        <div id="pathStatus" class="status hidden"></div>
-      </div>
 
-      <!-- Step 2: Branch Selection -->
-      <div class="modal-card hidden" id="step2">
-        <div class="card-header"><span class="step-badge">2</span><h3>Select Branch</h3></div>
-        <div class="branch-controls">
-          <div class="input-row"><input type="text" id="branchSearch" placeholder="Search branch..." oninput="filterBranches()" /></div>
-          <div class="input-row">
-            <input type="text" id="authorFilter" placeholder="Filter by author (e.g., rocky)" oninput="filterByAuthor()" />
-            <button onclick="fetchBranches()" class="btn-secondary">🔄 Refresh</button>
+        <!-- Step 3 -->
+        <div class="modal-card hidden" id="step3">
+          <div class="card-header"><span class="step-badge">3</span><h3>Jira Story Content</h3></div>
+          <textarea id="storyContent" rows="7" placeholder="Paste your Jira story here..."></textarea>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="modal-card hidden" id="step4">
+          <div class="card-header"><span class="step-badge">4</span><h3>Additional Context</h3></div>
+          <p class="card-desc">Extra notes — migrations, known impacts, dependencies.</p>
+          <textarea id="additionalPoints" rows="3" placeholder="e.g., iText to OpenHTMLToPDF migration..."></textarea>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="modal-card hidden" id="step5">
+          <div class="card-header"><span class="step-badge">5</span><h3>Developer Details</h3></div>
+          <div class="form-grid">
+            <div class="form-field"><label>Assignee</label><input type="text" id="assignee" placeholder="Name" /></div>
+            <div class="form-field"><label>DEV Date</label><input type="date" id="devDate" /></div>
+            <div class="form-field"><label>UAT Date</label><input type="date" id="uatDate" /></div>
           </div>
         </div>
-        <div id="branchList" class="branch-list"></div>
-        <div id="currentBranch" class="status info hidden"></div>
-        <div id="branchStatus" class="status hidden"></div>
-        <div id="stashPrompt" class="stash-prompt hidden">
-          <p>⚠️ Uncommitted changes detected. Stash them before switching?</p>
-          <div class="stash-actions">
-            <button onclick="stashAndCheckout()" class="btn-accent">Yes, Stash & Switch</button>
-            <button onclick="cancelCheckout()" class="btn-secondary">Cancel</button>
+
+        <!-- Step 6 -->
+        <div class="modal-card hidden" id="step6">
+          <button id="analyzeBtn" onclick="analyze()" class="btn-primary">⚡ Generate with Kiro</button>
+        </div>
+
+        <!-- Terminal -->
+        <div class="modal-card hidden" id="terminalCard">
+          <div class="card-header"><span class="step-badge terminal-badge">⚡</span><h3>Kiro Terminal</h3></div>
+          <div id="terminal" class="terminal"></div>
+        </div>
+
+        <!-- Result -->
+        <div class="modal-card hidden" id="result">
+          <div class="card-header"><span class="step-badge done-badge">✓</span><h3>Generation Complete</h3></div>
+          <div id="resultContent"></div>
+          <div class="download-section">
+            <button class="btn-download" onclick="downloadGenerated('wbs')">📋 Download WBS</button>
+            <button class="btn-download" onclick="downloadGenerated('impact')">📊 Download Impact Analysis</button>
           </div>
-        </div>
-      </div>
-
-      <!-- Step 3: Jira Story -->
-      <div class="modal-card hidden" id="step3">
-        <div class="card-header"><span class="step-badge">3</span><h3>Jira Story Content</h3></div>
-        <textarea id="storyContent" rows="7" placeholder="Paste your Jira story here..."></textarea>
-      </div>
-
-      <!-- Step 4: Additional Points -->
-      <div class="modal-card hidden" id="step4">
-        <div class="card-header"><span class="step-badge">4</span><h3>Additional Context</h3></div>
-        <p class="card-desc">Extra notes — migrations, known impacts, dependencies.</p>
-        <textarea id="additionalPoints" rows="3" placeholder="e.g., iText to OpenHTMLToPDF migration..."></textarea>
-      </div>
-
-      <!-- Step 5: Developer Details -->
-      <div class="modal-card hidden" id="step5">
-        <div class="card-header"><span class="step-badge">5</span><h3>Developer Details</h3></div>
-        <div class="form-grid">
-          <div class="form-field"><label>Assignee</label><input type="text" id="assignee" placeholder="Name" /></div>
-          <div class="form-field"><label>DEV Date</label><input type="date" id="devDate" /></div>
-          <div class="form-field"><label>UAT Date</label><input type="date" id="uatDate" /></div>
-        </div>
-      </div>
-
-      <!-- Step 6: Generate -->
-      <div class="modal-card hidden" id="step6">
-        <button id="analyzeBtn" onclick="analyze()" class="btn-primary">⚡ Generate with Kiro</button>
-      </div>
-
-      <!-- Terminal -->
-      <div class="modal-card hidden" id="terminalCard">
-        <div class="card-header"><span class="step-badge terminal-badge">⚡</span><h3>Kiro Terminal</h3></div>
-        <div id="terminal" class="terminal"></div>
-      </div>
-
-      <!-- Result -->
-      <div class="modal-card hidden" id="result">
-        <div class="card-header"><span class="step-badge done-badge">✓</span><h3>Generation Complete</h3></div>
-        <div id="resultContent"></div>
-        <div class="download-section">
-          <button class="btn-download" onclick="downloadGenerated('wbs')">📋 Download WBS</button>
-          <button class="btn-download" onclick="downloadGenerated('impact')">📊 Download Impact Analysis</button>
         </div>
       </div>
     </div>
   </div>
 
   <script src="app.js"></script>
-  <script>
-    // Auto-load saved projects on page load
-    document.addEventListener('DOMContentLoaded', loadSavedProjects);
-  </script>
 </body>
 </html>
