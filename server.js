@@ -366,3 +366,5 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Dev Effort Analyzer running at http://localhost:${PORT}`);
 });
+
+module.exports = server;
