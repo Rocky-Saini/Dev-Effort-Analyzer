@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — DevEffort</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-brand">⚡ DevEffort</a>
+      <div class="nav-links" id="navLinks">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link active">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/terms.html" class="nav-link">Terms</a>
+      </div>
+      <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    </div>
+  </nav>
+
+  <section class="page-section">
+    <div class="container">
+      <h1 class="page-title">About DevEffort</h1>
+
+      <div class="about-content">
+        <div class="about-block">
+          <h2>What is DevEffort?</h2>
+          <p>DevEffort is an AI-powered tool that helps developers generate professional Work Breakdown Structure (WBS) and Impact Analysis documents in minutes instead of hours.</p>
+          <p>It scans your codebase, understands your architecture, reads your Jira story, and uses Kiro AI to produce meaningful, email-ready documents that your team and management expect.</p>
+        </div>
+
+        <div class="about-block">
+          <h2>The Problem We Solve</h2>
+          <p>Every sprint, developers spend 2-3 hours per ticket writing WBS and Impact Analysis documents. This is repetitive, time-consuming, and takes away from actual development work.</p>
+          <p>DevEffort automates this entire process — giving you back those hours to focus on what matters: writing code.</p>
+        </div>
+
+        <div class="about-block">
+          <h2>How It Works</h2>
+          <div class="steps-list">
+            <div class="step-item">
+              <span class="step-num">1</span>
+              <div>
+                <strong>Point to your repo</strong>
+                <p>Select your local project path. DevEffort scans controllers, services, entities, events, and configs.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">2</span>
+              <div>
+                <strong>Paste your Jira story</strong>
+                <p>Include the story ID, description, acceptance criteria, and any technical notes.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">3</span>
+              <div>
+                <strong>Add your context</strong>
+                <p>Any additional notes — migrations, known impacts, dependencies you're aware of.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-num">4</span>
+              <div>
+                <strong>Kiro generates everything</strong>
+                <p>AI builds a refined prompt from your inputs + codebase analysis, then generates WBS and Impact Analysis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-block ceo-section">
+          <h2>CEO & Creator</h2>
+          <div class="ceo-card">
+            <div class="ceo-avatar">RS</div>
+            <div class="ceo-info">
+              <h3>Rocky Saini</h3>
+              <p class="ceo-role">Founder & Developer</p>
+              <p class="ceo-desc">Software engineer passionate about developer productivity and AI-powered tooling. Building tools that save developers time and reduce repetitive work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand"><span>⚡ DevEffort</span><p>AI-Powered Development Effort Analyzer</p></div>
+      <div class="footer-links"><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/terms.html">Terms</a></div>
+      <div class="footer-copy">&copy; 2025 DevEffort. Built by Rocky Saini.</div>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

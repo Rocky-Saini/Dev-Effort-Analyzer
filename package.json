@@ -1,0 +1,10 @@
+{
+  "name": "dev-effort-analyzer",
+  "version": "1.0.0",
+  "description": "Browser-based tool to analyze codebase and generate WBS + Impact Analysis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
