@@ -1204,3 +1204,11 @@ code { background: #1c2733; padding: 0.15rem 0.4rem; border-radius: 4px; font-si
   #downloadModal .modal-body { padding: 1.5rem; }
   #downloadModal .modal-header { padding: 1.25rem 1.5rem; }
 }
+
+
+/* Disabled download option */
+.dl-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
